@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ronin-db
+  namespace: ronin-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ronin-db
+  template:
+    metadata:
+      labels:
+        app: ronin-db
+    spec:
+      containers:
+        - name: ronin-db
+          image: postgres:17
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: ronin-config
+            - secretRef:
+                name: ronin-secrets
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-storage
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc

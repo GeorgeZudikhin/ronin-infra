@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ronin-frontend
+  namespace: ronin-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ronin-frontend
+  template:
+    metadata:
+      labels:
+        app: ronin-frontend
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+        - name: ronin-frontend
+          image: 243020648765.dkr.ecr.eu-north-1.amazonaws.com/ronin-frontend:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: ronin-config
