@@ -13,15 +13,12 @@ spec:
       labels:
         app: ronin-backend
     spec:
-      imagePullSecrets:
-        - name: ecr-secret
       containers:
         - name: ronin-backend
-          image: 243020648765.dkr.ecr.eu-north-1.amazonaws.com/ronin-backend:latest
+          image: yehorzudikhin/ronin-backend:latest
           ports:
             - containerPort: 8080
-          envFrom:
-            - configMapRef:
-                name: ronin-config
-            - secretRef:
-                name: ronin-secrets
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          imagePullPolicy: Always

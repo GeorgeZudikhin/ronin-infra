@@ -13,13 +13,9 @@ spec:
       labels:
         app: ronin-frontend
     spec:
-      imagePullSecrets:
-        - name: ecr-secret
       containers:
         - name: ronin-frontend
-          image: 243020648765.dkr.ecr.eu-north-1.amazonaws.com/ronin-frontend:latest
+          image: yehorzudikhin/ronin-frontend:hope
           ports:
             - containerPort: 80
-          envFrom:
-            - configMapRef:
-                name: ronin-config
+          imagePullPolicy: Always

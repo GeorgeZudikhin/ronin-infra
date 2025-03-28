@@ -3,17 +3,23 @@ kind: Ingress
 metadata:
   name: ronin-ingress
   namespace: ronin-namespace
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
     - host: ronin.local
       http:
         paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: ronin-backend
+                port:
+                  number: 8080
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: ronin-frontend-service
+                name: ronin-frontend
                 port:
                   number: 80
