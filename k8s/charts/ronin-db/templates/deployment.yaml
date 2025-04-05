@@ -15,16 +15,17 @@ spec:
     spec:
       containers:
         - name: ronin-db
-          image: postgres:17
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 5432
+            - containerPort: {{ .Values.service.port }}
           env:
-            - name: POSTGRES_PASSWORD
-              value: ronin
-            - name: POSTGRES_USER
-              value: ronin
             - name: POSTGRES_DB
-              value: ronin_db
+              value: {{ .Values.postgres.db }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.user }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.password }}
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data

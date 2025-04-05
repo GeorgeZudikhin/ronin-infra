@@ -4,7 +4,7 @@ metadata:
   name: ronin-frontend
   namespace: ronin-namespace
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: ronin-frontend
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ronin-frontend
-          image: yehorzudikhin/ronin-frontend:hope
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 80
-          imagePullPolicy: Always
+            - containerPort: {{ .Values.service.port }}

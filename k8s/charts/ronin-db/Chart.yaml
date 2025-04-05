@@ -1,0 +1,4 @@
+apiVersion: v2
+name: ronin-db
+description: Ronin DB Chart
+version: 0.1.0

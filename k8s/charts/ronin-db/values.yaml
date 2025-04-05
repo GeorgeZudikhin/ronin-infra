@@ -1,0 +1,15 @@
+image:
+  repository: postgres
+  tag: 17
+  pullPolicy: IfNotPresent
+
+postgres:
+  db: ronin_db
+  user: ronin
+  password: ronin
+
+persistence:
+  size: 1Gi
+
+service:
+  port: 5432

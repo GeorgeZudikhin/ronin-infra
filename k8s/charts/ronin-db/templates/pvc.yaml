@@ -6,6 +6,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: standard
+  volumeName: postgres-pv
   resources:
     requests:
-      storage: 1Gi
+      storage: "{{ .Values.persistence.size }}"

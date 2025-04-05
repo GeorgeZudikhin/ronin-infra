@@ -1,0 +1,4 @@
+apiVersion: v2
+name: ronin-frontend
+description: Ronin Frontend Chart
+version: 0.1.0

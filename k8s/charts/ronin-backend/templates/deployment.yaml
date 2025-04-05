@@ -4,7 +4,7 @@ metadata:
   name: ronin-backend
   namespace: ronin-namespace
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: ronin-backend
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
         - name: ronin-backend
-          image: yehorzudikhin/ronin-backend:latest
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.service.port }}
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: docker
-          imagePullPolicy: Always
+              value: prod
