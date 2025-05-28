@@ -1,11 +1,11 @@
 resource "helm_release" "argocd" {
-    name       = "argocd"
-    repository = "https://argoproj.github.io/argo-helm"
-    chart      = "argo-cd"
-    version    = "7.8.23"
+  name       = "argocd"
+  repository = "https://argoproj.github.io/argo-helm"
+  chart      = "argo-cd"
+  version    = "7.8.23"
 
-    namespace = "argocd"
-    create_namespace = true
+  namespace        = "argocd"
+  create_namespace = true
 }
 
 resource "kubernetes_manifest" "argo-app-ronin-db" {

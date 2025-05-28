@@ -1,0 +1,21 @@
+name: Terraform Security with Checkov
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  checkov:
+    name: Run Checkov
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: ./terraform
+          quiet: true

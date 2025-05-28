@@ -9,4 +9,9 @@ resource "helm_release" "nginx_ingress" {
     name  = "service.type"
     value = "LoadBalancer"
   }
+
+  set {
+    name  = "controller.extraArgs.default-ssl-certificate"
+    value = "ronin-namespace/ronin-tls"
+  }
 }

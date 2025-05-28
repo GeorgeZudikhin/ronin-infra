@@ -2,6 +2,6 @@ module "tf_remote_state" {
   source = "./modules/tf_remote_state"
 }
 
-module "eks" {
-  source = "./modules/eks"
+module "ronin_eks" {
+  source = "./modules/ronin_eks"
 }
