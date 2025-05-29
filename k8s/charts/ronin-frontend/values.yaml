@@ -1,6 +1,6 @@
 image:
   repository: yehorzudikhin/ronin-frontend
-  tag: 392ab95f03c0243dcb3bfe8ab384fe977bbb68fa
+  tag: 6d5da722dc75db3f4581e374b094168c34f07b18
   pullPolicy: Always
 replicaCount: 1
 service:
