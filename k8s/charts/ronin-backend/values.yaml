@@ -1,6 +1,6 @@
 image:
   repository: yehorzudikhin/ronin-backend
-  tag: ba608088a360d298517d0d5a3807f0bf676948ab
+  tag: 392ab95f03c0243dcb3bfe8ab384fe977bbb68fa
   pullPolicy: Always
 replicaCount: 1
 service:
