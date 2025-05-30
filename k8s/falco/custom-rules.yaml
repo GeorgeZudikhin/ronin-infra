@@ -1,0 +1,21 @@
+customRules:
+  shell-rule.yaml: |
+    - rule: Privileged Container Started
+      desc: Detect a privileged container starting (should be avoided in most environments)
+      condition: >
+        container
+        and container.is_privileged = true
+        and evt.type = execve
+        and evt.dir=< 
+      output: >
+        🚨 Privileged container started (container=%container.name user=%user.name command=%proc.cmdline image=%container.image.repository)
+      priority: CRITICAL
+      tags: [container, privilege, policy]
+    - rule: Shell Spawned in a Container
+      desc: A shell was spawned by a containerized process
+      condition: container.id != host and proc.name in (bash, sh, zsh, ksh, tcsh)
+      output: >
+        ⚠️ Shell spawned in a container (container=%container.name user=%user.name shell=%proc.name parent=%proc.pname cmdline=%proc.cmdline)
+      priority: WARNING
+      tags: [container, shell]
+
